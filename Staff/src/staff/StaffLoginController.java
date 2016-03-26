@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Dialog;
+import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 
 
@@ -35,7 +36,7 @@ public class StaffLoginController implements Initializable {
      * Initializes the controller class.
      */
     @FXML private TextField loginIdTextField;
-    @FXML private TextField pwdTextField;
+    @FXML private PasswordField pwdTextField;
     private static Connection conn;
     private int type;
     @Override
@@ -90,7 +91,8 @@ public class StaffLoginController implements Initializable {
     
     @FXML
     private void onClickSignup(ActionEvent event) throws IOException{
-         Parent rt = FXMLLoader.load(getClass().getResource("Signup.fxml"));
+         Parent rt;
+        rt = FXMLLoader.load(getClass().getResource("SignUp1.fxml"));
          Scene signsc=new Scene(rt);
          Stage stg=new Stage();
          stg.setScene(signsc);
