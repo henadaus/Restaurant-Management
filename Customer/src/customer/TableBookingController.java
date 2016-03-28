@@ -41,8 +41,8 @@ public class TableBookingController implements Initializable {
     private String name;
     private String phone;
     private int seat;
-   
-    private int tableId;
+    public int cust_id;
+    public int tableId;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        nameTextField.clear();
@@ -93,14 +93,25 @@ public class TableBookingController implements Initializable {
                 
          query="Insert into customer (c_id,c_name,c_phone) values("+counter+",'"+name+"','"+phone+"')";
         st.executeUpdate(query);
+        cust_id=counter;
         
         query="Update table_info set c_id='"+counter+"' where t_id='"+tableId+"'";
         st.executeUpdate(query);
         counter++;
-        Parent rt = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+        
+        //Opening the menu window 
+       /* Parent rt = FXMLLoader.load(getClass().getResource("Menu.fxml"));
          Scene signsc=new Scene(rt);
          Stage stg=new Stage();
          stg.setScene(signsc);
+         stg.show();*/
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("Menu.fxml"));
+        Parent rt=loader.load();
+        Scene signsc=new Scene(rt);
+         Stage stg=new Stage();
+         stg.setScene(signsc);
+         MenuController controller=loader.<MenuController>getController();
+         controller.initData(cust_id,tableId);
          stg.show();
           }
           else
