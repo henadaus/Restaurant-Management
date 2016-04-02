@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="staff.Manager.ManagerWindowController">
+   <children>
+      <TabPane layoutX="7.0" layoutY="6.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="PendingOrders">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="pendingOrderTable" layoutX="-1.0" layoutY="14.0" prefHeight="298.0" prefWidth="600.0" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="orderID" prefWidth="116.0" text="ORDER ID" />
+                            <TableColumn fx:id="cusID" prefWidth="172.0" text="CUSTOMER ID" />
+                              <TableColumn fx:id="tableID" prefWidth="164.0" text="TABLE ID" />
+                              <TableColumn fx:id="waiterID" prefWidth="145.0" text="WAITER ID" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="151.0" layoutY="306.0" mnemonicParsing="false" onAction="#onClickgetOrder" prefHeight="25.0" prefWidth="103.0" text="Get Orders" />
+                        <Button layoutX="320.0" layoutY="306.0" mnemonicParsing="false" text="Forward to Chef" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="CompletedOrders">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="C1" />
+                            <TableColumn prefWidth="75.0" text="C2" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

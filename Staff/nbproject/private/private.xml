@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Hena/Documents/NetBeansProjects/Staff/src/staff/SignupController.java</file>
-            <file>file:/C:/Users/Hena/Documents/NetBeansProjects/Staff/src/staff/Staff.java</file>
-            <file>file:/C:/Users/Hena/Documents/NetBeansProjects/Staff/src/staff/Connections/DBConn.java</file>
-            <file>file:/C:/Users/Hena/Documents/NetBeansProjects/Staff/src/staff/SignUp1.fxml</file>
+            <file>file:/C:/Users/Hena/Documents/NetBeansProjects/Staff/src/staff/Waiter/Order.java</file>
             <file>file:/C:/Users/Hena/Documents/NetBeansProjects/Staff/src/staff/StaffLoginController.java</file>
-            <file>file:/C:/Users/Hena/Documents/NetBeansProjects/Staff/src/staff/StaffLogin1.fxml</file>
+            <file>file:/C:/Users/Hena/Documents/NetBeansProjects/Staff/src/staff/Waiter/Menu.java</file>
+            <file>file:/C:/Users/Hena/Documents/NetBeansProjects/Staff/src/staff/Waiter/CurrentOrderController.java</file>
+            <file>file:/C:/Users/Hena/Documents/NetBeansProjects/Staff/src/staff/Waiter/MenuController.java</file>
         </group>
     </open-files>
 </project-private>

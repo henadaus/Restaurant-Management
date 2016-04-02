@@ -8,7 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Staff.jar" size="8114" download="eager" />
+    <jar href="Staff.jar" size="24882" download="eager" />
+    <jar href="lib\commons-codec-1.10.jar" size="284184" download="eager" />
     <jar href="lib\mysql-connector-java-5.0.8-bin.jar" size="540852" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="827921" download="eager" />
   </resources>

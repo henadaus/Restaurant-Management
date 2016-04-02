@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package staff;
-
+import staff.Waiter.*;
 import java.io.IOException;
 import staff.Connections.DBConn;
 import java.net.URL;
@@ -47,7 +47,7 @@ public class StaffLoginController implements Initializable {
        pwdTextField.clear();
     }    
     @FXML
-    private void onClickLogin(ActionEvent event) throws SQLException{
+    private void onClickLogin(ActionEvent event) throws SQLException, IOException{
         String id=loginIdTextField.getText();
         String pwd=pwdTextField.getText();
         Statement st=conn.createStatement();
@@ -60,6 +60,26 @@ public class StaffLoginController implements Initializable {
         {
             System.out.println("Login successful");
             type=rs.getInt("s_type");
+            if(type==1)  //1.waiter 2.Manager 3. Cashier
+            {
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("Waiter/CurrentOrder.fxml"));
+        Parent rt=loader.load();
+        Scene signsc=new Scene(rt);
+         Stage stg=new Stage();
+         stg.setScene(signsc);
+         CurrentOrderController controller=loader.<CurrentOrderController>getController();
+         controller.initData(id);
+         stg.show();
+            }
+            else if(type==2)
+            {
+                 FXMLLoader loader=new FXMLLoader(getClass().getResource("Manager/ManagerWindow.fxml"));
+        Parent rt=loader.load();
+        Scene signsc=new Scene(rt);
+         Stage stg=new Stage();
+         stg.setScene(signsc);
+         stg.show();
+            }
         }
         else
         {
