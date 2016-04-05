@@ -44,6 +44,7 @@ public class CashierController implements Initializable {
     private TableColumn<PendingBill,Float> bill;
     
     private static Connection conn;
+    //private ObservableList<PendingBill> list;
      Callback<TableColumn, TableCell> cellFactory = (TableColumn p) -> new TableCell();
     /**
      * Initializes the controller class.
@@ -57,11 +58,12 @@ public class CashierController implements Initializable {
        bill.setCellValueFactory(new PropertyValueFactory<>("bill"));
         DBConn c=new DBConn();
         conn=c.geConnection();
+       // list=FXCollections.observableArrayList();
     }    
     @FXML
    private void onClickPendingBill(ActionEvent e)
    {
-        ObservableList<PendingBill> list=FXCollections.observableArrayList();
+       ObservableList<PendingBill> list=FXCollections.observableArrayList();
          try {
              Statement st=conn.createStatement();
              int billstatus=0;
@@ -84,6 +86,7 @@ public class CashierController implements Initializable {
              
             // if(f!=0)
                 cashierView.getItems().addAll(list);
+             
              
          } catch (SQLException ex) {
              Logger.getLogger(CurrentOrderController.class.getName()).log(Level.SEVERE, null, ex);
@@ -109,10 +112,18 @@ public class CashierController implements Initializable {
              int cus_id=rs.getInt(3),new_cid=0;
              String query2="update table_info set c_id='"+new_cid+"' where c_id='"+cus_id+"'";
          st2.executeUpdate(query2);
+         
+         //deleting the row
+         ObservableList<PendingBill>billSelected,allBill;
+         allBill=cashierView.getItems();
+         
+         allBill.remove((currBill));
+         
+         //alert
          Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information dialog");
         alert.setHeaderText(null);
-        alert.setContentText(" Payment has Received Succussfully");
+        alert.setContentText(" Payment has Received Successfully");
         alert.showAndWait();
    }
 }

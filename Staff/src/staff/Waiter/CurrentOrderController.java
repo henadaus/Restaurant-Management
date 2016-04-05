@@ -30,6 +30,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import staff.cashier.PendingBill;
 
 /**
  * FXML Controller class
@@ -102,6 +103,11 @@ public class CurrentOrderController implements Initializable {
         CurrOrder corder = currentOrderTable.getSelectionModel().getSelectedItem();
         System.out.println(corder.getTid()+" "+corder.getCid());
         
+        //deleting a row
+        ObservableList<CurrOrder>orderSelected,allOrder;
+        allOrder=currentOrderTable.getItems();
+        allOrder.remove((corder));
+         
         FXMLLoader loader=new FXMLLoader(getClass().getResource("Menu.fxml"));
         Parent rt=loader.load();
         Scene signsc=new Scene(rt);

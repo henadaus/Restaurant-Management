@@ -152,11 +152,11 @@ public class ProcessedOrder implements Runnable{
             String s="finished";
             String query="update order_info set status='"+s+"'";
             st.executeUpdate(query);
-            Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
+            /*Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation dialog");
             alert.setHeaderText(null);
             alert.setContentText("Order"+this.orderid+" completed successfully!!");
-            alert.showAndWait();
+            alert.showAndWait();*/
         } catch (SQLException ex) {
             Logger.getLogger(ProcessedOrder.class.getName()).log(Level.SEVERE, null, ex);
         }

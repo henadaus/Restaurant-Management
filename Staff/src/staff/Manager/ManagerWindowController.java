@@ -28,6 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import staff.Connections.DBConn;
+import staff.cashier.PendingBill;
 
 /**
  * FXML Controller class
@@ -83,7 +84,14 @@ public class ManagerWindowController implements Initializable {
    
 @FXML
 private void onClickgetPendingOrder(ActionEvent e)
-{
+{   
+    
+        //deleting the current table
+        ObservableList<ProcessedOrder>allOrders,aa;
+         allOrders=processingOrderTable.getItems();
+         aa=processingOrderTable.getItems();
+         allOrders.removeAll(aa);
+    
          ObservableList<ProcessedOrder> list=FXCollections.observableArrayList();
          try {
              Statement st=conn.createStatement();
@@ -112,7 +120,11 @@ private void onClickgetPendingOrder(ActionEvent e)
 private void onClickForward(ActionEvent e)
 {
     A.stream().forEach((A1) -> {
-        A1.startProcessing();
+        try {
+            A1.startProcessing();
+        } catch (SQLException ex) {
+            Logger.getLogger(ManagerWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     });
 }
 }

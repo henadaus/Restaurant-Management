@@ -16,7 +16,7 @@
          </font>
       </Label>
       <TextField fx:id="idTextField" layoutX="54.0" layoutY="90.0" prefHeight="25.0" prefWidth="297.0" promptText="Enter loginId" />
-      <PasswordField fx:id="pwdTextField" layoutX="54.0" layoutY="154.0" prefHeight="25.0" prefWidth="297.0"  />
+      <PasswordField fx:id="pwdTextField" layoutX="54.0" layoutY="154.0" prefHeight="25.0" prefWidth="297.0" promptText="Enter password" />
       <ComboBox fx:id="staffTypeComboBox" layoutX="54.0" layoutY="217.0" prefHeight="25.0" prefWidth="297.0" promptText="Staff type" />
       <Button fx:id="submitButton" layoutX="177.0" layoutY="319.0" mnemonicParsing="false" onAction="#onClickSubmit" text="SignUp" />
    </children>
