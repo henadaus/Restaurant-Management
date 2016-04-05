@@ -20,7 +20,7 @@ public class Customer extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("TableBooking.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("CustomerLogin.fxml"));
         
         Scene scene = new Scene(root);
         

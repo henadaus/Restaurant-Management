@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -33,53 +36,84 @@ import staff.Connections.DBConn;
  */
 public class ManagerWindowController implements Initializable {
 
-     @FXML
-    private TableView<PendingOrder> pendingOrderTable;
-    @FXML
-    private TableColumn<PendingOrder,Integer> orderID;
-    @FXML
-    private TableColumn<PendingOrder,Integer> cusID;
-    @FXML
-    private TableColumn<PendingOrder,Integer> tableID;
-    @FXML
-    private TableColumn<PendingOrder,String> waiterID;
+   
+    
     private static Connection conn;
+    //PROCESSING ORDER TABLE
+     @FXML
+    private TableView<ProcessedOrder> processingOrderTable;
+    @FXML
+    private TableColumn<ProcessedOrder,Integer> ProcessingOrderColumn;
+    @FXML
+    private TableColumn<ProcessedOrder,Integer> ProcessingCustomerColumn;
+    @FXML
+    private TableColumn<ProcessedOrder,Integer>ProcessingTableColumn;
+    @FXML
+    private TableColumn<ProcessedOrder,Long>remTimeColumn;
+    @FXML
+    private TableColumn<ProcessedOrder,Long>totalTimeColumn;
+    @FXML
+    private TableColumn<ProcessedOrder,ProgressBar>progressColumn;
+    @FXML
+    private TableColumn<ProcessedOrder,String>waiterIDColumn;
+     
+     private List<ProcessedOrder> A;
      Callback<TableColumn, TableCell> cellFactory = (TableColumn p) -> new TableCell();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       pendingOrderTable.setEditable(true);
-        tableID.setCellValueFactory(new PropertyValueFactory<>("tableID"));
-        cusID.setCellValueFactory(new PropertyValueFactory<>("cusID"));
-        orderID.setCellValueFactory(new PropertyValueFactory<>("orderID"));
-        waiterID.setCellValueFactory(new PropertyValueFactory<>("waiterID"));
+      
         DBConn c=new DBConn();
         conn=c.geConnection();
+        
+        //ProcessedOrder
+        ProcessingOrderColumn.setCellValueFactory(new PropertyValueFactory<>("orderid"));
+        ProcessingCustomerColumn.setCellValueFactory(new PropertyValueFactory<>("cusid"));
+        ProcessingTableColumn.setCellValueFactory(new PropertyValueFactory<>("tabid"));
+        remTimeColumn.setCellValueFactory(e-> e.getValue().lLongProperty().asObject());
+        totalTimeColumn.setCellValueFactory(new PropertyValueFactory<>("ttime"));
+        progressColumn.setCellValueFactory(new PropertyValueFactory<>("pb"));
+        waiterIDColumn.setCellValueFactory(new PropertyValueFactory<>("wid"));
+        A=new LinkedList<>();
+        
     }    
-   @FXML
-   private void onClickgetOrder(ActionEvent e)
-   {
-        ObservableList<PendingOrder> list=FXCollections.observableArrayList();
+  
+   
+@FXML
+private void onClickgetPendingOrder(ActionEvent e)
+{
+         ObservableList<ProcessedOrder> list=FXCollections.observableArrayList();
          try {
              Statement st=conn.createStatement();
              String status="pending";
              String query="select * from order_info where status='"+status+"'";
              ResultSet rs=st.executeQuery(query);
            // int f=0;
+             int i=0;
              while(rs.next())
              {
             // f++;
-                 PendingOrder a=new PendingOrder(rs.getInt(1), rs.getInt(3),rs.getInt(4),rs.getString(8));
+                 ProcessedOrder a=new ProcessedOrder(rs.getInt(1), rs.getInt(3),rs.getInt(4),rs.getInt(5)*60,rs.getInt(5)*60,rs.getString(8));
                  list.add(a);
-             }
+                 A.add(a);
+               }
              
             // if(f!=0)
-                pendingOrderTable.getItems().addAll(list);
+               processingOrderTable.getItems().addAll(list);
              
          } catch (SQLException ex) {
              Logger.getLogger(CurrentOrderController.class.getName()).log(Level.SEVERE, null, ex);
          }
-   }
 }
+
+@FXML
+private void onClickForward(ActionEvent e)
+{
+    A.stream().forEach((A1) -> {
+        A1.startProcessing();
+    });
+}
+}
+

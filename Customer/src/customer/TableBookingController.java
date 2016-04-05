@@ -105,14 +105,14 @@ public class TableBookingController implements Initializable {
          Stage stg=new Stage();
          stg.setScene(signsc);
          stg.show();*/
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("Menu.fxml"));
+       /* FXMLLoader loader=new FXMLLoader(getClass().getResource("Menu.fxml"));
         Parent rt=loader.load();
         Scene signsc=new Scene(rt);
          Stage stg=new Stage();
          stg.setScene(signsc);
          MenuController controller=loader.<MenuController>getController();
          controller.initData(cust_id,tableId);
-         stg.show();
+         stg.show();*/
           }
           else
           {

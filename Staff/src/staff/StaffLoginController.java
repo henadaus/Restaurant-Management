@@ -80,6 +80,15 @@ public class StaffLoginController implements Initializable {
          stg.setScene(signsc);
          stg.show();
             }
+             else if(type==3)
+            {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("cashier/cashier.fxml"));
+        Parent rt=loader.load();
+        Scene signsc=new Scene(rt);
+         Stage stg=new Stage();
+         stg.setScene(signsc);
+         stg.show();
+            }
         }
         else
         {

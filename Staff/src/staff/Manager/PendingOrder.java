@@ -12,6 +12,8 @@ package staff.Manager;
 public class PendingOrder {
     private int orderID;
     private int cusID;
+     private int tableID;
+    private String waiterID;
 
     public int getOrderID() {
         return orderID;
@@ -44,9 +46,7 @@ public class PendingOrder {
     public void setWaiterID(String waiterID) {
         this.waiterID = waiterID;
     }
-    private int tableID;
-    private String waiterID;
-
+   
     public PendingOrder(int a,int b,int c,String d) {
         orderID=a;
         cusID=b;
