@@ -14,7 +14,7 @@
           <TableColumn fx:id="cusID" editable="false" prefWidth="98.0" text="Customer ID" />
         </columns>
       </TableView>
-      <Button layoutX="334.0" layoutY="383.0" mnemonicParsing="false" onAction="#onClickProceedButton" prefHeight="25.0" prefWidth="106.0" text="Proceed" />
-      <Button layoutX="194.0" layoutY="383.0" mnemonicParsing="false" onAction="#onClickgetTableButton" text="Fetch booked table" />
+      <Button layoutX="334.0" layoutY="383.0" mnemonicParsing="false" onAction="#onClickProceedButton" prefHeight="25.0" prefWidth="118.0" text="Proceed" />
+      <Button layoutX="171.0" layoutY="383.0" mnemonicParsing="false" onAction="#onClickgetTableButton" text="Fetch booked table" />
    </children>
 </AnchorPane>

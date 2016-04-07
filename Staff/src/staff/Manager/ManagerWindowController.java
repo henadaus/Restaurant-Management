@@ -38,7 +38,7 @@ import staff.cashier.PendingBill;
 public class ManagerWindowController implements Initializable {
 
    
-    
+    private String mid;
     private static Connection conn;
     //PROCESSING ORDER TABLE
      @FXML
@@ -81,7 +81,11 @@ public class ManagerWindowController implements Initializable {
         
     }    
   
-   
+   public void initData(String mid)
+    {
+        this.mid=mid;
+        
+    }
 @FXML
 private void onClickgetPendingOrder(ActionEvent e)
 {   
@@ -117,15 +121,22 @@ private void onClickgetPendingOrder(ActionEvent e)
 }
 
 @FXML
-private void onClickForward(ActionEvent e)
+private void onClickForward(ActionEvent e) throws SQLException
 {
-    A.stream().forEach((A1) -> {
+   /*A.stream().forEach((A1) -> {
         try {
             A1.startProcessing();
         } catch (SQLException ex) {
             Logger.getLogger(ManagerWindowController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    });
+    });*/
+   
+    ProcessedOrder p=processingOrderTable.getSelectionModel().getSelectedItem();
+    p.startProcessing();
+    Statement st=conn.createStatement();
+    System.out.println("waiter_id:"+p.wid);
+    String q="insert into process values('"+p.wid+"','"+mid+"',"+p.orderid+")";
+    st.executeUpdate(q);
 }
 }
 

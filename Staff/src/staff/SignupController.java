@@ -61,8 +61,27 @@ public class SignupController implements Initializable {
         String p=pwdTextField.getText();
         int type=Integer.parseInt(selectedType);
         Statement st=conn.createStatement();
-        String query="Insert into staff values ('"+id+"','"+p+"',"+type+")";
+        if(type==1){//Waiter
+        String query="Insert into staff values ('"+id+"',"+type+",1)";
         st.executeUpdate(query);
+        query="insert into waiter values('"+id+"','"+p+"')";
+        st.executeUpdate(query);
+        }
+        else if(type==2)//Manager
+        {
+        String query="Insert into staff values ('"+id+"',"+type+",1)";
+        st.executeUpdate(query);
+        query="insert into manager values('"+id+"','"+p+"')";
+        st.executeUpdate(query);
+        }
+        else
+        if(type==3)//Cashier
+        {
+        String query="Insert into staff values ('"+id+"',"+type+",1)";
+        st.executeUpdate(query);
+        query="insert into cashier values('"+id+"','"+p+"')";
+        st.executeUpdate(query);
+        }
         Alert alert=new Alert(AlertType.INFORMATION);
         alert.setTitle("Information dialog");
         alert.setHeaderText(null);

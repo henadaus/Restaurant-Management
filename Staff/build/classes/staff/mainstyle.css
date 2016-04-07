@@ -1,0 +1,108 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 5, 2016, 12:55:41 PM
+    Author     : Ashish
+*/
+
+#topanchor{
+    -fx-background-image:url('../images/restimage.jpg');
+    -fx-background-insets: 5px 5px 5px 5px;
+}
+
+.button{
+    -fx-background-color: linear-gradient(#ff5400, #be1d00);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-font-size:15px;
+    -fx-font-weight:bold;
+    
+}
+.button:hover {
+    -fx-background-color:linear-gradient(#f0ff35, #a9ff00),radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-font-size:15px;
+    -fx-font-weight:bold;
+    
+}
+#cfbutton:hover {
+    
+    -fx-background-color:linear-gradient(#f0ff35, #a9ff00),radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-font-size:15px;
+    -fx-font-weight:bold;
+}
+
+#cfbutton {
+    
+    //-fx-background-color:linear-gradient(to left, #e43a15 , #e65245);
+    -fx-background-color: 
+        #000000,
+        linear-gradient(#7ebcea, #2f4b8f),
+        linear-gradient(#426ab7, #263e75),
+        linear-gradient(#395cab, #223768);
+   
+}
+
+#inanchor{
+    -fx-background-color:linear-gradient(to left, #00c6ff , #0072ff);
+    -fx-background-radius: 20px;
+    -fx-border-inset:2px;
+    -fx-border-radius: 20px;
+    -fx-border-color: #ff6600;
+    -fx-border-width: 4px;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+#resname{
+    -fx-font-size:60px;
+    -fx-fill:linear-gradient(#ffd65b, #e68400),linear-gradient(#ffef84, #f2ba44),linear-gradient(#ffea6a, #efaa22),linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 30;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20 10 20;
+   
+}
+
+#infolabel{
+    -fx-font-size:15px;
+    -fx-background-color: white;
+    -fx-background-radius: 30;
+    -fx-background-insets: 0;
+    -fx-border-color: #ffe657;
+    -fx-border-radius: 30;
+    -fx-fill:green;
+    
+}
+
+
+.text-field{
+    -fx-border-width: 1px;
+    -fx-border-color: #ff6600;
+    -fx-border-radius: 50px;
+    -fx-background-radius: 50px;
+    -fx-text-fill: black;
+    -fx-font-size: 15px; 
+    -fx-padding: 5px 35px 5px 15px;
+    -fx-background-color: white;
+    -fx-prompt-text-fill: #802c2c ;
+  
+}
+
+.text-field:focused{
+    -fx-border-width: 3px;
+    -fx-border-color: #a9ff00;
+    
+}
+.text-field {
+    
+}

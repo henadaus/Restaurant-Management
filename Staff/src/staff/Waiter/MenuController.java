@@ -110,7 +110,7 @@ public class MenuController implements Initializable {
              int f=0;
              while(rs.next())
              {
-             f++;
+                 f++;
                  Menu a=new Menu(rs.getInt(1), rs.getString(2),rs.getFloat(3),"0");
                  list.add(a);
              }
@@ -174,7 +174,14 @@ public class MenuController implements Initializable {
         counter++;
         System.out.println("Counter:"+counter);
         String status="pending";
+        //PLACING ORDER
         String q="insert into order_info values("+counter+",'"+list+"',"+c_id+","+tableId+","+ttime+",'"+status+"',"+tprice+",'"+wid+"',0)";
+        st.executeUpdate(q);
+        //UPDATING TABLE_INFO
+        q="update table_info set order_taken=1 where t_id="+tableId+" ";
+        st.executeUpdate(q);
+        //UPDATING `book_and_order
+        q="insert into book_and_order values("+c_id+","+tableId+","+counter+")";
         st.executeUpdate(q);
     }
 }

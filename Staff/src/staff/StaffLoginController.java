@@ -22,6 +22,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
+import staff.Manager.ManagerWindowController;
+import staff.cashier.CashierController;
 
 
 /**
@@ -55,40 +57,50 @@ public class StaffLoginController implements Initializable {
         String query="select * from staff where s_id='"+id+"'";
         ResultSet rs=st.executeQuery(query);
         if(rs.next()){
-        String b=rs.getString("pwd");
-        if(b.equals(pwd))
+        
+        type=rs.getInt("s_type");
+        if(type==1)  //1.waiter 2.Manager 3. Cashier
         {
-            System.out.println("Login successful");
-            type=rs.getInt("s_type");
-            if(type==1)  //1.waiter 2.Manager 3. Cashier
-            {
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("Waiter/CurrentOrder.fxml"));
-        Parent rt=loader.load();
-        Scene signsc=new Scene(rt);
+         Statement st1=conn.createStatement();
+         String q="select * from waiter where s_id='"+id+"'";
+         ResultSet rs1=st1.executeQuery(q);
+         rs1.next();
+         String b=rs1.getString("passwd");
+         if(b.equals(pwd)){
+         FXMLLoader loader=new FXMLLoader(getClass().getResource("Waiter/CurrentOrder.fxml"));
+         Parent rt=loader.load();
+         Scene signsc=new Scene(rt);
          Stage stg=new Stage();
          stg.setScene(signsc);
          CurrentOrderController controller=loader.<CurrentOrderController>getController();
          controller.initData(id);
          stg.show();
-            }
-            else if(type==2)
-            {
-                 FXMLLoader loader=new FXMLLoader(getClass().getResource("Manager/ManagerWindow.fxml"));
+         }
+        else
+        {
+          Alert alert=new Alert(Alert.AlertType.ERROR);
+          alert.setTitle("Error dialog");
+          alert.setHeaderText(null);
+          alert.setContentText("Ooops!!You entered wrong password.Please try again.");
+          alert.showAndWait();
+             }
+        }
+       else if(type==2)//Manager
+      {
+         Statement st1=conn.createStatement();
+         String q="select * from manager where s_id='"+id+"'";
+         ResultSet rs1=st1.executeQuery(q);
+         rs1.next();
+         String b=rs1.getString("passwd");
+        if(b.equals(pwd)){
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("Manager/ManagerWindow.fxml"));
         Parent rt=loader.load();
         Scene signsc=new Scene(rt);
-         Stage stg=new Stage();
-         stg.setScene(signsc);
+        Stage stg=new Stage();
+        stg.setScene(signsc);
+        ManagerWindowController controller=loader.<ManagerWindowController>getController();
+        controller.initData(id);
          stg.show();
-            }
-             else if(type==3)
-            {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("cashier/cashier.fxml"));
-        Parent rt=loader.load();
-        Scene signsc=new Scene(rt);
-         Stage stg=new Stage();
-         stg.setScene(signsc);
-         stg.show();
-            }
         }
         else
         {
@@ -98,6 +110,35 @@ public class StaffLoginController implements Initializable {
           alert.setContentText("Ooops!!You entered wrong password.Please try again.");
           alert.showAndWait();
         }
+            }
+        else if(type==3)//cashier
+        {
+         Statement st1=conn.createStatement();
+         String q="select * from cashier where s_id='"+id+"'";
+         ResultSet rs1=st1.executeQuery(q);
+         rs1.next();
+         String b=rs1.getString("passwd");
+        if(b.equals(pwd)){
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("cashier/cashier.fxml"));
+        Parent rt=loader.load();
+        Scene signsc=new Scene(rt);
+        Stage stg=new Stage();
+        stg.setScene(signsc);
+        CashierController controller=loader.<CashierController>getController();
+        controller.initData(id);
+         stg.show();
+        }
+        else
+        {
+          Alert alert=new Alert(Alert.AlertType.ERROR);
+          alert.setTitle("Error dialog");
+          alert.setHeaderText(null);
+          alert.setContentText("Ooops!!You entered wrong password.Please try again.");
+          alert.showAndWait();
+        }
+            }
+       // }
+                       
         }
         else
         {
@@ -121,7 +162,7 @@ public class StaffLoginController implements Initializable {
     @FXML
     private void onClickSignup(ActionEvent event) throws IOException{
          Parent rt;
-        rt = FXMLLoader.load(getClass().getResource("SignUp1.fxml"));
+        rt = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
          Scene signsc=new Scene(rt);
          Stage stg=new Stage();
          stg.setScene(signsc);

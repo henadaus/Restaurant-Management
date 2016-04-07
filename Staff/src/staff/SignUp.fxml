@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="staff.SignupController">
+    <stylesheets>
+        <URL value="@mainstyle.css"/>
+        
+    </stylesheets>
+    <children>
+      <Label layoutX="148.0" layoutY="40.0" text="STAFF SIGNUP">
+        
+      </Label>
+      <TextField fx:id="idTextField" layoutX="54.0" layoutY="90.0" prefHeight="25.0" prefWidth="297.0" promptText="Enter loginId" />
+      <PasswordField fx:id="pwdTextField" layoutX="54.0" layoutY="154.0" prefHeight="25.0" prefWidth="297.0" promptText="Enter password" />
+      <ComboBox fx:id="staffTypeComboBox" layoutX="54.0" layoutY="217.0" prefHeight="25.0" prefWidth="297.0" promptText="Staff type" />
+      <Button fx:id="submitButton" layoutX="177.0" layoutY="319.0" mnemonicParsing="false" onAction="#onClickSubmit" text="SignUp" />
+   </children>
+   
+</AnchorPane>

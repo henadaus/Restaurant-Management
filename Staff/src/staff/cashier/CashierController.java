@@ -25,13 +25,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import staff.Connections.DBConn;
-import staff.Manager.PendingOrder;
 import staff.Waiter.CurrentOrderController;
 
 /**
  * FXML Controller class
  *
- * @author Neeraj
+ * @author Hena
  */
 public class CashierController implements Initializable {
      @FXML
@@ -42,7 +41,7 @@ public class CashierController implements Initializable {
     private TableColumn<PendingBill,String> cusName;
     @FXML
     private TableColumn<PendingBill,Float> bill;
-    
+    private String caid;
     private static Connection conn;
     //private ObservableList<PendingBill> list;
      Callback<TableColumn, TableCell> cellFactory = (TableColumn p) -> new TableCell();
@@ -60,6 +59,13 @@ public class CashierController implements Initializable {
         conn=c.geConnection();
        // list=FXCollections.observableArrayList();
     }    
+    
+    public void initData(String caid)
+    {
+        this.caid=caid;
+        
+    }
+    
     @FXML
    private void onClickPendingBill(ActionEvent e)
    {
@@ -68,8 +74,8 @@ public class CashierController implements Initializable {
              Statement st=conn.createStatement();
              int billstatus=0;
              String status="finished";
-              Statement st1=conn.createStatement();
-             String query="select * from order_info where bill_paid='"+billstatus+"' and status='"+status+"'";
+              
+             String query="select * from order_info where bill_paid="+billstatus+" and status='"+status+"'";
              ResultSet rs=st.executeQuery(query);
            // int f=0;
              while(rs.next())
@@ -77,7 +83,9 @@ public class CashierController implements Initializable {
             // f++;
                  System.out.println("in cashierCntroller");
                  int id=rs.getInt(3);
-                  String query1="select * from customer where c_id='"+id+"'";
+                 System.out.println("cid:"+id);
+                 Statement st1=conn.createStatement();
+                  String query1="select * from customer where c_id="+id+"";
                   ResultSet rs1=st1.executeQuery(query1);
                   rs1.next();
                  PendingBill a=new PendingBill(rs.getInt(1), rs1.getString(2),rs.getFloat(7));
@@ -110,7 +118,7 @@ public class CashierController implements Initializable {
          ResultSet rs=st1.executeQuery(query1);
              rs.next();
              int cus_id=rs.getInt(3),new_cid=0;
-             String query2="update table_info set c_id='"+new_cid+"' where c_id='"+cus_id+"'";
+             String query2="update table_info set c_id='"+new_cid+"',order_taken=0 where c_id='"+cus_id+"'";
          st2.executeUpdate(query2);
          
          //deleting the row
@@ -119,8 +127,26 @@ public class CashierController implements Initializable {
          
          allBill.remove((currBill));
          
+        //Inserting into `bill` schema
+         int counter=0;
+        //fetching the bill_id of the last order
+        query="select * from bill";
+        rs=st.executeQuery(query);
+        while(rs.next())
+        {
+        counter=rs.getInt("bill_id");
+        
+        }
+        
+        counter++;
+        String query3="insert into bill values("+counter+","+currBill.bill+")";
+        st.executeUpdate(query3);
+        //Updating the bill_generation schema
+        String query4="insert into bill_generation values("+currBill.orderID+",'"+caid+"',"+counter+")";
+        st.executeUpdate(query4);
+         
          //alert
-         Alert alert=new Alert(Alert.AlertType.INFORMATION);
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information dialog");
         alert.setHeaderText(null);
         alert.setContentText(" Payment has Received Successfully");

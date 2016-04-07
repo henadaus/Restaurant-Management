@@ -21,7 +21,7 @@ import javafx.scene.control.ProgressBar;
  * @author Hena
  */
 public class ProcessedOrder implements Runnable{
-    private int orderid;
+    public int orderid;
     private int cusid;
     private int tabid;
     private String waiterid;
@@ -29,7 +29,7 @@ public class ProcessedOrder implements Runnable{
     private long ttime;
     private ProgressBar pb = new ProgressBar(0);
     private LongProperty l;
-    private String wid;
+    public String wid;
     private static Connection conn;
     
     public String getWid() {
@@ -150,7 +150,7 @@ public class ProcessedOrder implements Runnable{
         try {
             st = conn.createStatement();
             String s="finished";
-            String query="update order_info set status='"+s+"'";
+            String query="update order_info set status='"+s+"' where order_id="+orderid+"";
             st.executeUpdate(query);
             /*Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation dialog");

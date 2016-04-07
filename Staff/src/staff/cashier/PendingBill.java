@@ -7,12 +7,12 @@ package staff.cashier;
 
 /**
  *
- * @author Neeraj
+ * @author Hena
  */
 public class PendingBill {
-    private int orderID;
+    public int orderID;
     private String cusName;
-
+    public float bill;
     public String getCusName() {
         return cusName;
     }
@@ -30,7 +30,7 @@ public class PendingBill {
     }
 
    
-    private float bill;
+    
 
     public float getBill() {
         return bill;
