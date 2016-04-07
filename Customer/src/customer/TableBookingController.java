@@ -36,13 +36,15 @@ public class TableBookingController implements Initializable {
     @FXML private TextField contactTextField;
     @FXML private TextField seatTextField;
     @FXML private Label tableIdLabel;
-   
+    @FXML private TextField emailTextField;
+    
     private static Connection conn;
     private String name;
     private String phone;
     private int seat;
-    public int cust_id;
-    public int tableId;
+    private int cust_id;
+    private int tableId;
+    private String email; 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        nameTextField.clear();
@@ -59,6 +61,7 @@ public class TableBookingController implements Initializable {
       name=nameTextField.getText();
       phone=contactTextField.getText();
       seat=Integer.parseInt(seatTextField.getText());
+      email=emailTextField.getText();
       if(!name.equals("") && !phone.equals("") && seat!=0){
       Statement st=conn.createStatement();
       String query="Select t_id from table_info where t_seat>='"+seat+"' and c_id=0";
@@ -91,7 +94,7 @@ public class TableBookingController implements Initializable {
         counter++;
         System.out.println("heya:"+counter);
                 
-         query="Insert into customer (c_id,c_name,c_phone) values("+counter+",'"+name+"','"+phone+"')";
+         query="Insert into customer values("+counter+",'"+name+"','"+phone+"','"+email+"')";
         st.executeUpdate(query);
         cust_id=counter;
         
