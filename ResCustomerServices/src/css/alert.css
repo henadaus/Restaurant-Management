@@ -1,0 +1,34 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 5, 2016, 6:08:26 PM
+    Author     : Ashish
+*/
+
+.dialog > .dialog-pane {
+    -fx-background-color: greenyellow;
+}
+
+.dialog > .dialog-pane > .button-bar {
+    -fx-font-size: 24px;
+    -fx-background-color: indianred;
+    -fx-font-family: "Andalus";
+}
+
+.dialog > .dialog-pane > .content.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold; 
+    -fx-fill: blue;
+}
+
+.dialog:header > .dialog-pane .header-panel {
+    -fx-background-color: cadetblue;
+    -fx-font-style: italic;
+}
+
+.alert.confirmation.dialog-pane {
+    -fx-graphic: url("lock24.png");
+}

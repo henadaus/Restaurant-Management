@@ -6,6 +6,7 @@
 package staff.Waiter;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import staff.Connections.DBConn;
 import java.net.URL;
 import java.sql.Connection;
@@ -45,7 +46,7 @@ public class CurrentOrderController implements Initializable {
     @FXML
     private TableColumn<CurrOrder,Integer> tableID;
     @FXML
-    private TableColumn<CurrOrder,Integer> cusID;
+    private TableColumn<CurrOrder,BigInteger> cusID;
     private static Connection conn;
      Callback<TableColumn, TableCell> cellFactory = new Callback<TableColumn, TableCell>() {
             @Override
@@ -79,13 +80,14 @@ public class CurrentOrderController implements Initializable {
         ObservableList<CurrOrder> list=FXCollections.observableArrayList();
          try {
              Statement st=conn.createStatement();
-             String query="select * from table_info where c_id > 0";
+             String query="select * from table_info where c_id > 0 and order_taken=0";
              ResultSet rs=st.executeQuery(query);
             int f=0;
              while(rs.next())
              {
              f++;
-                 CurrOrder a=new CurrOrder(rs.getInt(1), rs.getInt(3));
+                 CurrOrder a;
+                 a = new CurrOrder(rs.getInt("t_id"), new BigInteger(Long.toString(rs.getLong("c_id"))));
                  list.add(a);
              }
              

@@ -5,6 +5,7 @@
  */
 package staff.Manager;
 
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,7 +23,7 @@ import javafx.scene.control.ProgressBar;
  */
 public class ProcessedOrder implements Runnable{
     public int orderid;
-    private int cusid;
+    private BigInteger cusid;
     private int tabid;
     private String waiterid;
     private long rtime;
@@ -56,11 +57,11 @@ public class ProcessedOrder implements Runnable{
         this.orderid = orderid;
     }
 
-    public int getCusid() {
+    public BigInteger getCusid() {
         return cusid;
     }
 
-    public void setCusid(int cusid) {
+    public void setCusid(BigInteger  cusid) {
         this.cusid = cusid;
     }
 
@@ -108,7 +109,7 @@ public class ProcessedOrder implements Runnable{
        return l;
    }
 
-     ProcessedOrder(int orderid, int cusid, int tabid,long rtime, int ttime,String wid) {
+     ProcessedOrder(int orderid,BigInteger  cusid, int tabid,long rtime, int ttime,String wid) {
         this.orderid = orderid;
         this.cusid = cusid;
         this.tabid = tabid;
@@ -146,20 +147,16 @@ public class ProcessedOrder implements Runnable{
         }
         l.set(0);
         pb.setProgress(1);
-        Statement st;
+        /*Statement st;
         try {
             st = conn.createStatement();
             String s="finished";
             String query="update order_info set status='"+s+"' where order_id="+orderid+"";
             st.executeUpdate(query);
-            /*Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation dialog");
-            alert.setHeaderText(null);
-            alert.setContentText("Order"+this.orderid+" completed successfully!!");
-            alert.showAndWait();*/
+            
         } catch (SQLException ex) {
             Logger.getLogger(ProcessedOrder.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
                       
         
         System.out.println("Order "+orderid+"Completed");

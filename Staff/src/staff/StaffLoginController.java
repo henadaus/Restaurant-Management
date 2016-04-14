@@ -93,7 +93,7 @@ public class StaffLoginController implements Initializable {
          rs1.next();
          String b=rs1.getString("passwd");
         if(b.equals(pwd)){
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("Manager/ManagerWindow.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("Manager/Manager.fxml"));
         Parent rt=loader.load();
         Scene signsc=new Scene(rt);
         Stage stg=new Stage();

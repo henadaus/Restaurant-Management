@@ -5,6 +5,7 @@
  */
 package staff.Manager;
 
+import java.math.BigInteger;
 import staff.Waiter.*;
 import java.net.URL;
 import java.sql.Connection;
@@ -26,6 +27,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 import staff.Connections.DBConn;
 import staff.cashier.PendingBill;
@@ -46,7 +49,7 @@ public class ManagerWindowController implements Initializable {
     @FXML
     private TableColumn<ProcessedOrder,Integer> ProcessingOrderColumn;
     @FXML
-    private TableColumn<ProcessedOrder,Integer> ProcessingCustomerColumn;
+    private TableColumn<ProcessedOrder,BigInteger> ProcessingCustomerColumn;
     @FXML
     private TableColumn<ProcessedOrder,Integer>ProcessingTableColumn;
     @FXML
@@ -57,7 +60,7 @@ public class ManagerWindowController implements Initializable {
     private TableColumn<ProcessedOrder,ProgressBar>progressColumn;
     @FXML
     private TableColumn<ProcessedOrder,String>waiterIDColumn;
-     
+    
      private List<ProcessedOrder> A;
      Callback<TableColumn, TableCell> cellFactory = (TableColumn p) -> new TableCell();
     /**
@@ -79,6 +82,7 @@ public class ManagerWindowController implements Initializable {
         waiterIDColumn.setCellValueFactory(new PropertyValueFactory<>("wid"));
         A=new LinkedList<>();
         
+                
     }    
   
    public void initData(String mid)
@@ -107,7 +111,7 @@ private void onClickgetPendingOrder(ActionEvent e)
              while(rs.next())
              {
             // f++;
-                 ProcessedOrder a=new ProcessedOrder(rs.getInt(1), rs.getInt(3),rs.getInt(4),rs.getInt(5)*60,rs.getInt(5)*60,rs.getString(8));
+                 ProcessedOrder a=new ProcessedOrder(rs.getInt("order_id"), new BigInteger(Long.toString(rs.getLong("c_id"))),rs.getInt("table_id"),rs.getInt("time")*60,rs.getInt("time")*60,rs.getString("waiter_id"));
                  list.add(a);
                  A.add(a);
                }
@@ -121,7 +125,7 @@ private void onClickgetPendingOrder(ActionEvent e)
 }
 
 @FXML
-private void onClickForward(ActionEvent e) throws SQLException
+private void onClickStart(ActionEvent e) throws SQLException
 {
    /*A.stream().forEach((A1) -> {
         try {
@@ -137,6 +141,53 @@ private void onClickForward(ActionEvent e) throws SQLException
     System.out.println("waiter_id:"+p.wid);
     String q="insert into process values('"+p.wid+"','"+mid+"',"+p.orderid+")";
     st.executeUpdate(q);
+    
+    //Forwarding 
+}
+
+@FXML
+private void onClickForward(ActionEvent e)
+{
+    ProcessedOrder p=processingOrderTable.getSelectionModel().getSelectedItem();
+    Statement st;
+        try {
+            st = conn.createStatement();
+            String s="finished";
+            String query="update order_info set status='"+s+"' where order_id="+p.orderid+"";
+            st.executeUpdate(query);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ProcessedOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //deleting the row
+         ObservableList<ProcessedOrder>allOrders;
+         allOrders=processingOrderTable.getItems();
+         
+         allOrders.remove((p));
+}
+
+@FXML
+private void onClickCancel(ActionEvent e)
+{
+    ProcessedOrder p=processingOrderTable.getSelectionModel().getSelectedItem();
+    Statement st;
+        try {
+            st = conn.createStatement();
+            
+            String query="delete  from  order_info  where order_id="+p.orderid+"";
+            st.executeUpdate(query);
+            query="delete  from  process  where order_id="+p.orderid+"";
+            st.executeUpdate(query);
+            query="delete  from  book_and_order  where order_id="+p.orderid+"";
+            st.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProcessedOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //deleting the row
+         ObservableList<ProcessedOrder>allOrders;
+         allOrders=processingOrderTable.getItems();
+         
+         allOrders.remove((p));
 }
 }
 

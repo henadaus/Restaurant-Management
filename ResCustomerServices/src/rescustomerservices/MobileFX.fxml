@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="topanchor" opacity="0.98" prefHeight="656.0" prefWidth="1063.0" stylesheets="@../css/mainstyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rescustomerservices.MobileFXController">
+   
+    
+    <children>
+      <AnchorPane id="inanchor" fx:id="confimButton" layoutX="399.0" layoutY="185.0" prefHeight="304.0" prefWidth="575.0">
+         <children>
+            <TextField fx:id="mobTextField" alignment="CENTER" layoutX="39.0" layoutY="85.0" onMouseClicked="#onclickmobTextField" prefHeight="33.0" prefWidth="229.0" promptText="Enter Your Mobile No">
+               <tooltip>
+                  <Tooltip text="10 Digit Mobile No" />
+               </tooltip></TextField>
+            <TextField fx:id="seatTextField" alignment="CENTER" layoutX="42.0" layoutY="140.0" prefHeight="33.0" prefWidth="229.0" promptText="Enter No of Seat Required">
+               <tooltip>
+                  <Tooltip text="Required seats" />
+               </tooltip></TextField>
+            <Button fx:id="checkNextButton" layoutX="133.0" layoutY="209.0" mnemonicParsing="false" onAction="#onClickcheckNextButton" prefHeight="48.0" prefWidth="132.0" text="Book Table">
+               <effect>
+                  <Reflection fraction="0.38" topOpacity="0.26" />
+               </effect></Button>
+            <Label id="infolabel" fx:id="infoArea" alignment="CENTER" contentDisplay="CENTER" layoutX="339.0" layoutY="54.0" prefHeight="129.0" prefWidth="212.0" text="Enter your Information" textAlignment="CENTER" />
+            <Button id="cfbutton" fx:id="confirmButton" layoutX="392.0" layoutY="209.0" mnemonicParsing="false" onAction="#onClickconfirmButton" prefHeight="48.0" prefWidth="132.0" text="Confirm">
+               <effect>
+                  <Reflection fraction="0.68" topOpacity="0.17" />
+               </effect></Button>
+            <CheckBox fx:id="guestCheck" alignment="CENTER" layoutX="42.0" layoutY="225.0" mnemonicParsing="false" text="Guest ">
+               <effect>
+                  <Glow level="0.31" />
+               </effect>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <textFill>
+                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                     <stops>
+                        <Stop color="#bc1111" />
+                        <Stop color="#000000be" offset="1.0" />
+                     </stops>
+                  </RadialGradient>
+               </textFill>
+            </CheckBox>
+         </children>
+      </AnchorPane>
+      <Text id="resname" fill="#5b5e5b" layoutX="388.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Centrico Restaurant" textAlignment="CENTER" wrappingWidth="585.13671875">
+         <effect>
+            <Reflection fraction="0.49" topOpacity="0.41" />
+         </effect></Text>
+   </children>
+</AnchorPane>

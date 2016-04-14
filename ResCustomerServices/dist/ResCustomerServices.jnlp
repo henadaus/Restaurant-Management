@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ResCustomerServices.jnlp">
+  <information>
+    <title>ResCustomerServices</title>
+    <vendor>Ashish</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="ResCustomerServices.jar" size="107232" download="eager" />
+    <jar href="lib\commons-codec-1.7.jar" size="259600" download="eager" />
+    <jar href="lib\commons-logging-1.1.1.jar" size="60686" download="eager" />
+    <jar href="lib\google-api-client-1.21.0.jar" size="195118" download="eager" />
+    <jar href="lib\google-api-client-android-1.21.0.jar" size="10297" download="eager" />
+    <jar href="lib\google-api-client-appengine-1.21.0.jar" size="9867" download="eager" />
+    <jar href="lib\google-api-client-gson-1.21.0.jar" size="2651" download="eager" />
+    <jar href="lib\google-api-client-jackson2-1.21.0.jar" size="2693" download="eager" />
+    <jar href="lib\google-api-client-java6-1.21.0.jar" size="2324" download="eager" />
+    <jar href="lib\google-api-client-protobuf-1.21.0.jar" size="10640" download="eager" />
+    <jar href="lib\google-api-client-servlet-1.21.0.jar" size="6552" download="eager" />
+    <jar href="lib\google-api-client-xml-1.21.0.jar" size="10368" download="eager" />
+    <jar href="lib\google-api-services-gmail-v1-rev40-1.21.0.jar" size="88425" download="eager" />
+    <jar href="lib\google-http-client-1.21.0.jar" size="284566" download="eager" />
+    <jar href="lib\google-http-client-android-1.21.0.jar" size="12011" download="eager" />
+    <jar href="lib\google-http-client-appengine-1.21.0.jar" size="15512" download="eager" />
+    <jar href="lib\google-http-client-gson-1.21.0.jar" size="8496" download="eager" />
+    <jar href="lib\google-http-client-jackson-1.21.0.jar" size="5994" download="eager" />
+    <jar href="lib\google-http-client-jackson2-1.21.0.jar" size="6671" download="eager" />
+    <jar href="lib\google-http-client-jdo-1.21.0.jar" size="11225" download="eager" />
+    <jar href="lib\google-http-client-protobuf-1.21.0.jar" size="5167" download="eager" />
+    <jar href="lib\google-http-client-xml-1.21.0.jar" size="27629" download="eager" />
+    <jar href="lib\google-oauth-client-1.21.0.jar" size="61112" download="eager" />
+    <jar href="lib\google-oauth-client-appengine-1.21.0.jar" size="7935" download="eager" />
+    <jar href="lib\google-oauth-client-java6-1.21.0.jar" size="10775" download="eager" />
+    <jar href="lib\google-oauth-client-jetty-1.21.0.jar" size="5801" download="eager" />
+    <jar href="lib\google-oauth-client-servlet-1.21.0.jar" size="15137" download="eager" />
+    <jar href="lib\gson-2.1.jar" size="180110" download="eager" />
+    <jar href="lib\guava-jdk5-17.0.jar" size="2059438" download="eager" />
+    <jar href="lib\httpclient-4.0.1.jar" size="291037" download="eager" />
+    <jar href="lib\httpcore-4.0.1.jar" size="172888" download="eager" />
+    <jar href="lib\jackson-core-2.1.3.jar" size="206797" download="eager" />
+    <jar href="lib\jackson-core-asl-1.9.11.jar" size="232131" download="eager" />
+    <jar href="lib\javax.mail.jar" size="603572" download="eager" />
+    <jar href="lib\javax.servlet-api-3.1.0.jar" size="95806" download="eager" />
+    <jar href="lib\jdo2-api-2.3-eb.jar" size="192696" download="eager" />
+    <jar href="lib\jetty-6.1.26.jar" size="539912" download="eager" />
+    <jar href="lib\jetty-util-6.1.26.jar" size="177131" download="eager" />
+    <jar href="lib\jsr305-1.3.9.jar" size="33015" download="eager" />
+    <jar href="lib\mysql-connector-java-5.0.8-bin.jar" size="540852" download="eager" />
+    <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="827921" download="eager" />
+    <jar href="lib\protobuf-java-2.4.1.jar" size="450279" download="eager" />
+    <jar href="lib\transaction-api-1.1.jar" size="15071" download="eager" />
+    <jar href="lib\xpp3-1.1.4c.jar" size="120069" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ResCustomerServices" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="rescustomerservices.ResCustomerServices"  name="ResCustomerServices" />
+  <update check="always"/>
+</jnlp>

@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import org.apache.commons.codec.binary.Hex;
 import java.io.ObjectOutputStream;
+import java.math.BigInteger;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -23,11 +24,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
@@ -40,7 +43,7 @@ import staff.Connections.DBConn;
  */
 public class MenuController implements Initializable {
 
-    private int c_id;
+    private BigInteger c_id;
     private int tableId;
     private static Connection conn;
     private String[] s;
@@ -50,7 +53,9 @@ public class MenuController implements Initializable {
     /**
      * Initializes the controller class.
      */
-     @FXML
+    @FXML
+    private TextField couponTextField;
+    @FXML
     private TableView<Menu> menutable;
     @FXML
     private TableColumn<Menu,Integer> mid;
@@ -90,8 +95,10 @@ public class MenuController implements Initializable {
         });
        s=new String[20];
        idx=0;
+       getListButton.setDisable(true);
+       couponTextField.setEditable(false);
     }    
-    void initData(int tableId,int cus_id,String wid)
+    void initData(int tableId,BigInteger cus_id,String wid)
     {
         this.c_id=cus_id;
         this.tableId=tableId;
@@ -111,7 +118,7 @@ public class MenuController implements Initializable {
              while(rs.next())
              {
                  f++;
-                 Menu a=new Menu(rs.getInt(1), rs.getString(2),rs.getFloat(3),"0");
+                 Menu a=new Menu(rs.getInt("d_id"), rs.getString("d_name"),rs.getFloat("price"),"0");
                  list.add(a);
              }
              
@@ -121,16 +128,20 @@ public class MenuController implements Initializable {
          } catch (SQLException ex) {
              Logger.getLogger(CurrentOrderController.class.getName()).log(Level.SEVERE, null, ex);
          }
+         getListButton.setDisable(false);
+         couponTextField.setEditable(true);
     }
     @FXML
     private void onClickgetListButton(ActionEvent e) throws SQLException, IOException
     {
         getMenuButton.setDisable(true);
+       
+        Statement st=conn.createStatement();
         ObservableList<Menu> totallist=menutable.getItems();
         ObservableList<Menu> orderlist=FXCollections.observableArrayList();
         float tprice=0;
         int ttime=0;
-        Statement st=conn.createStatement();
+        
         for(Menu i:totallist)
         {
             if(Integer.parseInt(i.getMquantity())>0)
@@ -140,15 +151,46 @@ public class MenuController implements Initializable {
              tprice+=(i.getMprice() * Integer.parseInt(i.getMquantity()));
              
              
-             String query="select time from menu where d_id='"+i.getMid()+"'";
+             String query="select ttime from menu where d_id='"+i.getMid()+"'";
              ResultSet rs=st.executeQuery(query);
              rs.next();
-             ttime+=( rs.getInt(1)* Integer.parseInt(i.getMquantity()));
+             ttime+=( rs.getInt("ttime")* Integer.parseInt(i.getMquantity()));
                 System.out.println("Total time:"+ttime);
                 
              s[idx++]=i.getMname();
             }
         }
+        
+         //Checking the validity of coupon if it exists
+        if(couponTextField.getText()!=""){
+            
+        int coupon=Integer.parseInt(couponTextField.getText());
+        
+        String q="select * from coupon where coupon_id='"+coupon+"' ";
+        ResultSet rs1=st.executeQuery(q);
+            if(rs1.next())
+            {
+            Alert a=new Alert(Alert.AlertType.CONFIRMATION);
+            a.setTitle("Confirmation");
+            a.setHeaderText(null);
+            a.setContentText("Great!!Customer has a valid coupon");
+            a.showAndWait();
+            float discount=rs1.getFloat("discount_percent");
+            tprice-=(tprice*discount)/100;
+            }
+            else
+            {
+            Alert a=new Alert(Alert.AlertType.ERROR);
+            a.setTitle("Error");
+            a.setHeaderText(null);
+            a.setContentText("The coupon is not a valid one!!!!");
+            a.showAndWait();
+            }
+        
+        
+        }
+        
+        
         System.out.println("total price:"+tprice);
         totalPrice.setText("Total bill"+tprice);
         //Making an entry in `order` table
@@ -175,13 +217,13 @@ public class MenuController implements Initializable {
         System.out.println("Counter:"+counter);
         String status="pending";
         //PLACING ORDER
-        String q="insert into order_info values("+counter+",'"+list+"',"+c_id+","+tableId+","+ttime+",'"+status+"',"+tprice+",'"+wid+"',0)";
+        String q="insert into order_info values("+counter+",'"+list+"',"+tableId+","+ttime+",'"+status+"',"+tprice+",'"+wid+"',0,"+c_id+")";
         st.executeUpdate(q);
         //UPDATING TABLE_INFO
         q="update table_info set order_taken=1 where t_id="+tableId+" ";
         st.executeUpdate(q);
         //UPDATING `book_and_order
-        q="insert into book_and_order values("+c_id+","+tableId+","+counter+")";
+        q="insert into book_and_order values("+tableId+","+counter+","+c_id+")";
         st.executeUpdate(q);
     }
 }

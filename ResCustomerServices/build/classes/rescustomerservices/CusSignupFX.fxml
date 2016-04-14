@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="topanchor" prefHeight="463.0" prefWidth="586.0" stylesheets="@../css/signupstyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rescustomerservices.CusSignupFXController">
+   <children>
+      <AnchorPane id="inanchor" layoutX="119.0" layoutY="68.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="327.0" prefWidth="348.0">
+         <children>
+            <TextField fx:id="mobTextField" layoutX="78.0" layoutY="57.0" prefHeight="25.0" prefWidth="201.0" promptText="Enter Your Mobile No">
+               <tooltip>
+                  <Tooltip text="10 Digit Mobile No" />
+               </tooltip></TextField>
+            <TextField fx:id="nameTextField" layoutX="78.0" layoutY="103.0" prefHeight="25.0" prefWidth="201.0" promptText="Name">
+               <tooltip>
+                  <Tooltip text="Your Name" />
+               </tooltip></TextField>
+            <TextField fx:id="emailTextField" layoutX="78.0" layoutY="149.0" prefHeight="25.0" prefWidth="201.0" promptText="Email">
+               <tooltip>
+                  <Tooltip text="Enter Valid Email ID" />
+               </tooltip>
+            </TextField>
+            <TextField fx:id="addressTextField" layoutX="78.0" layoutY="193.0" prefHeight="25.0" prefWidth="201.0" promptText="Address">
+               <tooltip>
+                  <Tooltip text="Permanent Address" />
+               </tooltip></TextField>
+            <Button fx:id="signupButton" layoutX="193.0" layoutY="244.0" mnemonicParsing="false" onAction="#onClickSignupButton" prefHeight="40.0" prefWidth="86.0" text="Signup" />
+         </children>
+      </AnchorPane>
+      <Button id="closebutton" fx:id="closeButton" layoutX="516.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickcloseButton" text="X" />
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>

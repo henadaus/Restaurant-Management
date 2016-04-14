@@ -5,6 +5,7 @@
  */
 package staff.cashier;
 
+import java.math.BigInteger;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -82,13 +83,14 @@ public class CashierController implements Initializable {
              {
             // f++;
                  System.out.println("in cashierCntroller");
-                 int id=rs.getInt(3);
+                 BigInteger id=new BigInteger(Long.toString(rs.getLong("c_id")));
                  System.out.println("cid:"+id);
                  Statement st1=conn.createStatement();
                   String query1="select * from customer where c_id="+id+"";
                   ResultSet rs1=st1.executeQuery(query1);
                   rs1.next();
-                 PendingBill a=new PendingBill(rs.getInt(1), rs1.getString(2),rs.getFloat(7));
+                  System.out.println("Name:"+rs1.getString("c_name"));
+                 PendingBill a=new PendingBill(rs.getInt("order_id"), rs1.getString("c_name"),rs.getFloat("cost"));
                  list.add(a);
              }
              
@@ -117,7 +119,8 @@ public class CashierController implements Initializable {
          String query1="select * from order_info where order_id='"+currBill.getOrderID()+"'";
          ResultSet rs=st1.executeQuery(query1);
              rs.next();
-             int cus_id=rs.getInt(3),new_cid=0;
+             BigInteger cus_id=new BigInteger(Long.toString(rs.getLong("c_id")));
+             BigInteger new_cid=BigInteger.ZERO;
              String query2="update table_info set c_id='"+new_cid+"',order_taken=0 where c_id='"+cus_id+"'";
          st2.executeUpdate(query2);
          

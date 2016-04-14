@@ -5,13 +5,15 @@
  */
 package staff.Waiter;
 
+import java.math.BigInteger;
+
 /**
  *
  * @author Hena
  */
 public class CurrOrder {
     private int tid;
-    private int cid;
+    private BigInteger cid;
 
     public int getTid() {
         return tid;
@@ -21,15 +23,15 @@ public class CurrOrder {
         this.tid = tid;
     }
 
-    public int getCid() {
+    public BigInteger getCid() {
         return cid;
     }
 
-    public void setCid(int cid) {
+    public void setCid(BigInteger cid) {
         this.cid = cid;
     }
     
-    CurrOrder(int t,int c)
+    CurrOrder(int t,BigInteger c)
     {
         this.tid=t;
         this.cid=c;
