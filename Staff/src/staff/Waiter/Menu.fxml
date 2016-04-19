@@ -7,24 +7,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="staff.Waiter.MenuController">
+<AnchorPane id="AnchorPane" prefHeight="772.0" prefWidth="1164.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="staff.Waiter.MenuController">
     <children>
-      <TableView fx:id="menutable" layoutY="45.0" prefHeight="359.0" prefWidth="556.0">
-        <columns>
-          <TableColumn fx:id="mid" editable="false" prefWidth="125.0" text="Menuid" />
-          <TableColumn fx:id="mname" editable="false" prefWidth="151.0" text="Name" />
-            <TableColumn fx:id="mprice" editable="false" minWidth="0.0" prefWidth="146.0" text="Price" />
-            <TableColumn fx:id="mquantity" prefWidth="132.0" text="Quantity" />
-        </columns>
-      </TableView>
-      <Button fx:id="getMenuButton" layoutX="69.0" layoutY="499.0" mnemonicParsing="false" onAction="#onClickgetMenuButton" prefHeight="25.0" prefWidth="146.0" text="GetMenu" />
-      <Button fx:id="getListButton" layoutX="317.0" layoutY="499.0" mnemonicParsing="false" onAction="#onClickgetListButton" prefHeight="25.0" prefWidth="146.0" text="Get Order" />
-      <Label layoutX="21.0" layoutY="14.0" prefHeight="17.0" prefWidth="319.0" text="Taking order of Customer at table :">
-         <font>
-            <Font name="Arial Black" size="12.0" />
-         </font></Label>
-      <Label fx:id="currentCustomer" layoutX="215.0" layoutY="14.0" prefHeight="17.0" prefWidth="130.0" />
-      <Label fx:id="totalPrice" layoutX="221.0" layoutY="475.0" prefHeight="17.0" prefWidth="130.0" />
-      <TextField fx:id="couponTextField" layoutX="204.0" layoutY="438.0" promptText="Enter Coupon ID here" />
+      <AnchorPane layoutX="334.0" layoutY="132.0" prefHeight="582.0" prefWidth="568.0" AnchorPane.bottomAnchor="-48.0" AnchorPane.leftAnchor="334.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="132.0">
+         <children>
+            <Button fx:id="getMenuButton" layoutX="69.0" layoutY="485.0" mnemonicParsing="false" onAction="#onClickgetMenuButton" prefHeight="25.0" prefWidth="146.0" text="GetMenu" />
+            <Label fx:id="totalPrice" layoutX="221.0" layoutY="461.0" prefHeight="17.0" prefWidth="130.0" />
+            <Label layoutX="21.0" prefHeight="17.0" prefWidth="319.0" text="Taking order of Customer at table :">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="getListButton" layoutX="317.0" layoutY="485.0" mnemonicParsing="false" onAction="#onClickgetListButton" prefHeight="25.0" prefWidth="146.0" text="Get Order" />
+            <TextField fx:id="couponTextField" layoutX="204.0" layoutY="424.0" promptText="Enter Coupon ID here" />
+            <Label fx:id="currentCustomer" layoutX="215.0" prefHeight="17.0" prefWidth="130.0" />
+            <TableView fx:id="menutable" layoutY="31.0" prefHeight="359.0" prefWidth="556.0">
+              <columns>
+                <TableColumn fx:id="mid" editable="false" prefWidth="125.0" text="Menuid" />
+                <TableColumn fx:id="mname" editable="false" prefWidth="151.0" text="Name" />
+                  <TableColumn fx:id="mprice" editable="false" minWidth="0.0" prefWidth="146.0" text="Price" />
+                  <TableColumn fx:id="mquantity" prefWidth="132.0" text="Quantity" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
     </children>
 </AnchorPane>

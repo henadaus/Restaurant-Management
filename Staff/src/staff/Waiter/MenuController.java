@@ -88,7 +88,7 @@ public class MenuController implements Initializable {
 
         mquantity.setCellFactory(TextFieldTableCell.forTableColumn());
         mquantity.setOnEditCommit((TableColumn.CellEditEvent<Menu,String> t) -> {
-            //System.out.println("Hey hena :* ");
+            
             ((Menu) t.getTableView().getItems().get(
                     t.getTablePosition().getRow())
                     ).setMquantity(t.getNewValue());
@@ -135,13 +135,13 @@ public class MenuController implements Initializable {
     private void onClickgetListButton(ActionEvent e) throws SQLException, IOException
     {
         getMenuButton.setDisable(true);
-       
+        String itemInfo="";
         Statement st=conn.createStatement();
         ObservableList<Menu> totallist=menutable.getItems();
         ObservableList<Menu> orderlist=FXCollections.observableArrayList();
         float tprice=0;
         int ttime=0;
-        
+        String itemDetails="";//"ITEM NAME               PRICE       QUANTITY    TOTAL\n\n";
         for(Menu i:totallist)
         {
             if(Integer.parseInt(i.getMquantity())>0)
@@ -156,16 +156,23 @@ public class MenuController implements Initializable {
              rs.next();
              ttime+=( rs.getInt("ttime")* Integer.parseInt(i.getMquantity()));
                 System.out.println("Total time:"+ttime);
-                
-             s[idx++]=i.getMname();
+             
+            //itemDetails+=""+i.getMname()+"               Rs."+i.getMprice()+"           "+i.getMquantity()+"          "+(i.getMprice() * Integer.parseInt(i.getMquantity()))+"\n\n";
+            itemDetails+="Item    :"+i.getMname()+"       Price    :"+i.getMprice()+"      Qty    :"+i.getMquantity()+"        Total    :"+(i.getMprice() * Integer.parseInt(i.getMquantity()))+"\n\n";
+                s[idx++]=i.getMname()+""+i.getMquantity();
+                itemInfo+=i.getMname()+""+i.getMquantity()+"-";
+                        
             }
         }
         
+        itemDetails+="TOTAL COST : "+tprice+"\n\n";
+        
+        int couponGiven=0;
          //Checking the validity of coupon if it exists
-        if(couponTextField.getText()!=""){
+        if(!couponTextField.getText().equals("")){
             
         int coupon=Integer.parseInt(couponTextField.getText());
-        
+        couponGiven=coupon;
         String q="select * from coupon where coupon_id='"+coupon+"' ";
         ResultSet rs1=st.executeQuery(q);
             if(rs1.next())
@@ -175,8 +182,11 @@ public class MenuController implements Initializable {
             a.setHeaderText(null);
             a.setContentText("Great!!Customer has a valid coupon");
             a.showAndWait();
+            
             float discount=rs1.getFloat("discount_percent");
             tprice-=(tprice*discount)/100;
+            
+            itemDetails+="You have been given a discount of "+discount+"%\n\nFinal Cost     :   Rs."+tprice+"\n\n";
             }
             else
             {
@@ -217,7 +227,8 @@ public class MenuController implements Initializable {
         System.out.println("Counter:"+counter);
         String status="pending";
         //PLACING ORDER
-        String q="insert into order_info values("+counter+",'"+list+"',"+tableId+","+ttime+",'"+status+"',"+tprice+",'"+wid+"',0,"+c_id+")";
+        String q="insert into order_info (list,table_id,time,status,cost,waiter_id,bill_paid,c_id,coupon_id) values('"+itemInfo+"',"+tableId+","+ttime+",'"+status+"',"+tprice+",'"+wid+"',0,"+c_id+","+couponGiven+")";
+        System.out.println("here:"+q);
         st.executeUpdate(q);
         //UPDATING TABLE_INFO
         q="update table_info set order_taken=1 where t_id="+tableId+" ";

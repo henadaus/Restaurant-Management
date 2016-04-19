@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="439.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="staff.Waiter.CurrentOrderController">
+<AnchorPane id="AnchorPane" prefHeight="716.0" prefWidth="1159.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="staff.Waiter.CurrentOrderController">
    <children>
-      <TableView fx:id="currentOrderTable" layoutX="200.0" layoutY="22.0" prefHeight="341.0" prefWidth="200.0">
-        <columns>
-          <TableColumn fx:id="tableID" editable="false" prefWidth="101.0" text="Table ID" />
-          <TableColumn fx:id="cusID" editable="false" prefWidth="98.0" text="Customer ID" />
-        </columns>
-      </TableView>
-      <Button layoutX="334.0" layoutY="383.0" mnemonicParsing="false" onAction="#onClickProceedButton" prefHeight="25.0" prefWidth="118.0" text="Proceed" />
-      <Button layoutX="171.0" layoutY="383.0" mnemonicParsing="false" onAction="#onClickgetTableButton" text="Fetch booked table" />
+      <AnchorPane layoutX="307.0" layoutY="175.0">
+         <children>
+            <Button layoutX="455.0" layoutY="211.0" mnemonicParsing="false" onAction="#onClickProceedButton" prefHeight="90.0" prefWidth="120.0" text="Proceed" />
+            <Button layoutX="455.0" layoutY="76.0" mnemonicParsing="false" onAction="#onClickgetTableButton" prefHeight="90.0" prefWidth="120.0" text="Fetch booked table" />
+            <TableView fx:id="currentOrderTable" prefHeight="439.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="206.0" AnchorPane.topAnchor="0.0">
+               <columns>
+                  <TableColumn fx:id="tableID" editable="false" prefWidth="200.0" text="Table ID" />
+                  <TableColumn fx:id="cusID" editable="false" prefWidth="200.0" text="Customer ID" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

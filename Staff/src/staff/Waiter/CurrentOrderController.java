@@ -117,6 +117,7 @@ public class CurrentOrderController implements Initializable {
          stg.setScene(signsc);
          MenuController controller=loader.<MenuController>getController();
          controller.initData(corder.getTid(),corder.getCid(),wid);
+         stg.setFullScreen(true);
          stg.show();
         
     }

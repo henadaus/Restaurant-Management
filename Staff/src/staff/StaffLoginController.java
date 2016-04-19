@@ -74,6 +74,7 @@ public class StaffLoginController implements Initializable {
          stg.setScene(signsc);
          CurrentOrderController controller=loader.<CurrentOrderController>getController();
          controller.initData(id);
+         stg.setFullScreen(true);
          stg.show();
          }
         else
@@ -100,6 +101,7 @@ public class StaffLoginController implements Initializable {
         stg.setScene(signsc);
         ManagerWindowController controller=loader.<ManagerWindowController>getController();
         controller.initData(id);
+        stg.setFullScreen(true);
          stg.show();
         }
         else
@@ -126,6 +128,7 @@ public class StaffLoginController implements Initializable {
         stg.setScene(signsc);
         CashierController controller=loader.<CashierController>getController();
         controller.initData(id);
+        stg.setFullScreen(true);
          stg.show();
         }
         else

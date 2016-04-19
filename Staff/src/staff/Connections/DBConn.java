@@ -17,9 +17,9 @@ import java.util.logging.Logger;
  */
 public class DBConn {
     public   Connection con;
-    static String url ="jdbc:mysql://localhost/restaurant";
+    static String url ="jdbc:mysql://172.31.129.162:3306/restaurant";
     static String user = "root";
-    static String pass = "root";
+    static String pass = "";
    
     
     public  Connection mkDataBase() throws SQLException{

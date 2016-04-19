@@ -17,7 +17,6 @@
       </Label>
       <TextField fx:id="loginIdTextField" layoutX="65.0" layoutY="103.0" prefHeight="25.0" prefWidth="223.0" promptText="Login Id" />
       <PasswordField fx:id="pwdTextField" layoutX="65.0" layoutY="169.0" prefHeight="25.0" prefWidth="223.0" promptText="Password" />
-      <Button fx:id="signupButton" layoutX="65.0" layoutY="274.0" mnemonicParsing="false" onAction="#onClickSignup" text="SIGNUP" />
-      <Button fx:id="loginButton" layoutX="230.0" layoutY="274.0" mnemonicParsing="false" onAction="#onClickLogin" prefHeight="25.0" prefWidth="58.0" text="LOGIN" />
+      <Button fx:id="loginButton" layoutX="126.0" layoutY="271.0" mnemonicParsing="false" onAction="#onClickLogin" prefHeight="31.0" prefWidth="77.0" text="LOGIN" />
    </children>
 </AnchorPane>

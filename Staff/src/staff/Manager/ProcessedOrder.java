@@ -130,6 +130,16 @@ public class ProcessedOrder implements Runnable{
     @Override
     public void run() {
         long starttime=System.currentTimeMillis();
+        try {
+            //UPDATING THE STATUS
+            Statement st=conn.createStatement();
+            String s="processing";
+            String q="update order_info set status='"+s+"' where order_id="+orderid;
+            st.executeUpdate(q);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProcessedOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
         while((System.currentTimeMillis()-starttime)<ttime)
         {

@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -60,7 +61,14 @@ public class ManagerWindowController implements Initializable {
     private TableColumn<ProcessedOrder,ProgressBar>progressColumn;
     @FXML
     private TableColumn<ProcessedOrder,String>waiterIDColumn;
-    
+    @FXML
+    private Button getOrderButton;
+    @FXML
+    private Button startButton;
+    @FXML
+    private Button forwardButton;
+    @FXML
+    private Button cancelButton;
      private List<ProcessedOrder> A;
      Callback<TableColumn, TableCell> cellFactory = (TableColumn p) -> new TableCell();
     /**
@@ -81,6 +89,10 @@ public class ManagerWindowController implements Initializable {
         progressColumn.setCellValueFactory(new PropertyValueFactory<>("pb"));
         waiterIDColumn.setCellValueFactory(new PropertyValueFactory<>("wid"));
         A=new LinkedList<>();
+        getOrderButton.setDisable(false);
+        /*startButton.setDisable(true);
+        forwardButton.setDisable(true);
+        cancelButton.setDisable(true);*/
         
                 
     }    
@@ -122,6 +134,37 @@ private void onClickgetPendingOrder(ActionEvent e)
          } catch (SQLException ex) {
              Logger.getLogger(CurrentOrderController.class.getName()).log(Level.SEVERE, null, ex);
          }
+}
+
+@FXML
+private void onMouseClicked(ActionEvent e) throws SQLException{
+    ProcessedOrder p=processingOrderTable.getSelectionModel().getSelectedItem();
+    int oid=p.getOrderid();
+    Statement st=conn.createStatement();
+    String query="select status from order_info where order_id="+oid+"";
+    ResultSet rs=st.executeQuery(query);
+    rs.next();
+    String s=rs.getString("status");
+    if(s.equals("pending"))
+    {
+        startButton.setDisable(false);
+        forwardButton.setDisable(true);
+        cancelButton.setDisable(false);
+    }
+    else
+        if(s.equals("finished"))
+        {
+            startButton.setDisable(true);
+            cancelButton.setDisable(true);
+            forwardButton.setDisable(false);
+        }
+    else
+            if(s.equals("processing"))
+            {
+            startButton.setDisable(true);
+            cancelButton.setDisable(true);
+            forwardButton.setDisable(true);
+            }
 }
 
 @FXML

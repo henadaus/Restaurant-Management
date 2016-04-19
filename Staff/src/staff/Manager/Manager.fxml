@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -9,85 +10,89 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="561.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="staff.Manager.ManagerWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="710.0" prefWidth="1126.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="staff.Manager.ManagerWindowController">
    <children>
-      <BorderPane prefHeight="561.0" prefWidth="799.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <top>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="150.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#onClickStart" prefHeight="100.0" prefWidth="130.0" text="START">
-                     <effect>
-                        <Lighting>
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant />
-                           </light>
-                        </Lighting>
-                     </effect>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onClickgetPendingOrder" prefHeight="100.0" prefWidth="130.0" text="REFRESH">
-                     <effect>
-                        <Lighting>
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant />
-                           </light>
-                        </Lighting>
-                     </effect>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onClickForward" prefHeight="100.0" prefWidth="130.0" text="FORWARD">
-                     <effect>
-                        <Lighting>
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant />
-                           </light>
-                        </Lighting>
-                     </effect>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onClickCancel" prefHeight="100.0" prefWidth="130.0" text="CANCEL">
-                     <effect>
-                        <Lighting>
-                           <bumpInput>
-                              <Shadow />
-                           </bumpInput>
-                           <light>
-                              <Light.Distant />
-                           </light>
-                        </Lighting>
-                     </effect>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-               </children>
-            </HBox>
-         </top>
-         <center>
-            <TableView fx:id="processingOrderTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-              <columns>
-                <TableColumn fx:id="ProcessingOrderColumn" prefWidth="75.0" text="Order ID" />
-                <TableColumn fx:id="ProcessingCustomerColumn" prefWidth="75.0" text="Customer ID" />
-                  <TableColumn fx:id="ProcessingTableColumn" prefWidth="74.0" text="Table ID" />
-                  <TableColumn fx:id="remTimeColumn" prefWidth="112.0" text="Remaining Time" />
-                  <TableColumn fx:id="totalTimeColumn" prefWidth="75.0" text="Total Time" />
-                  <TableColumn fx:id="progressColumn" prefWidth="88.0" text="Progress" />
-                  <TableColumn fx:id="waiterIDColumn" prefWidth="100.0" text="Waiter ID" />
-              </columns>
-            </TableView>
-         </center>
-         <right>
-            <ListView prefHeight="250.0" prefWidth="211.0" BorderPane.alignment="CENTER" />
-         </right>
-      </BorderPane>
+      <AnchorPane id="AnchorPane" layoutX="137.0" layoutY="89.0" prefHeight="547.0" prefWidth="849.0">
+         <children>
+            <BorderPane prefHeight="561.0" prefWidth="799.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <center>
+                  <TableView fx:id="processingOrderTable" prefHeight="461.0" prefWidth="749.0" BorderPane.alignment="CENTER">
+                     <columns>
+                        <TableColumn fx:id="ProcessingOrderColumn" prefWidth="75.0" text="Order ID" />
+                        <TableColumn fx:id="ProcessingCustomerColumn" prefWidth="90.0" text="Customer ID" />
+                        <TableColumn fx:id="ProcessingTableColumn" prefWidth="100.0" text="Table ID" />
+                        <TableColumn fx:id="remTimeColumn" prefWidth="109.0" text="Remaining Time" />
+                        <TableColumn fx:id="totalTimeColumn" prefWidth="112.0" text="Total Time" />
+                        <TableColumn fx:id="progressColumn" prefWidth="176.0" text="Progress" />
+                        <TableColumn fx:id="waiterIDColumn" prefWidth="169.0" text="Waiter ID" />
+                     </columns>
+                  </TableView>
+               </center>
+               <top>
+                  <HBox prefHeight="92.0" prefWidth="682.0" spacing="150.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Button fx:id="getOrderButton" mnemonicParsing="false" onAction="#onClickgetPendingOrder" prefHeight="100.0" prefWidth="130.0" text="GET ORDERS">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </Button>
+                        <Button fx:id="startButton" mnemonicParsing="false" onAction="#onClickStart" prefHeight="100.0" prefWidth="130.0" text="START">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="forwardButton" mnemonicParsing="false" onAction="#onClickForward" prefHeight="100.0" prefWidth="130.0" text="FORWARD">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                        </Button>
+                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onClickCancel" prefHeight="100.0" prefWidth="130.0" text="CANCEL">
+                           <effect>
+                              <Lighting>
+                                 <bumpInput>
+                                    <Shadow />
+                                 </bumpInput>
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets />
+                     </BorderPane.margin>
+                  </HBox>
+               </top>
+            </BorderPane>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
