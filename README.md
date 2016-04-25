@@ -9,6 +9,11 @@ This application can efficiently handle and manage various activities of a resta
 (3)Netbeans IDE
 <a name="contributors"><h3>Contributors</h3></a>
 <ol>
-	<li><a href="https://github.com/henadaus">Hena Firdaus</a></li>
 	<li>Ashish Kumar</li>
+	<li><a href="https://github.com/henadaus">Hena Firdaus</a></li>
+	<li>Himani Gupta</li>
+	<li>Bazegha Tabassum</li>
+	<li>Antara Sen</li>
 </ol>
+
+Installer of this application for Windows can be downloaded from this link :                                                       <a href="https://drive.google.com/open?id=0B5TzY1pToWwVV0ptVllIelBRS1E">Get Installer</a>
